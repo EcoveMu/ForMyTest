@@ -17,12 +17,12 @@ function Home({ quizData }) {
             style={{ textDecoration: 'none', color: 'inherit' }}
           >
             <div className="category-card">
-              <h3>{quizData[categoryId].title}</h3>
+              <h3>{quizData[categoryId]?.title || '無標題'}</h3>
               <p>
                 共 {
-                  Object.keys(quizData[categoryId].sections).reduce((total, sectionId) => {
-                    return total + Object.keys(quizData[categoryId].sections[sectionId].sub_sections).reduce((subTotal, subSectionId) => {
-                      return subTotal + (quizData[categoryId].sections[sectionId].sub_sections[subSectionId].questions?.length || 0);
+                  Object.keys(quizData[categoryId]?.sections || {}).reduce((total, sectionId) => {
+                    return total + Object.keys(quizData[categoryId]?.sections?.[sectionId]?.sub_sections || {}).reduce((subTotal, subSectionId) => {
+                      return subTotal + (quizData[categoryId]?.sections?.[sectionId]?.sub_sections?.[subSectionId]?.questions?.length || 0);
                     }, 0);
                   }, 0)
                 } 題
