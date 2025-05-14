@@ -1,0 +1,31 @@
+# 依賴包文件夾
+node_modules/
+
+# 緩存文件
+.parcel-cache/
+.cache/
+dist/
+
+# 本地環境文件
+.env
+.env.local
+.env.development.local
+.env.test.local
+.env.production.local
+
+# 日誌文件
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# 編輯器和系統文件
+.DS_Store
+.idea/
+.vscode/
+*.swp
+*.swo
+
+# 構建輸出
+build/
+dist/
+out/ 
