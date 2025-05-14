@@ -300,4 +300,35 @@ header {
   .button-group {
     flex-direction: column;
   }
+}
+
+/* 解析內容的結構化樣式 */
+.solution-content {
+  margin-top: 1rem;
+}
+
+.solution-content p {
+  margin-bottom: 0.8rem;
+  line-height: 1.5;
+}
+
+.options-explanation {
+  margin-top: 1rem;
+  padding-left: 1rem;
+  border-left: 3px solid var(--primary-color);
+}
+
+.options-explanation p {
+  padding: 0.5rem 0;
+}
+
+/* 確保 HTML 內容在解析部分正確顯示 */
+.solution div, .solution p, .solution strong {
+  display: block;
+  margin-bottom: 0.5rem;
+}
+
+.solution strong {
+  display: inline;
+  margin-bottom: 0;
 } 

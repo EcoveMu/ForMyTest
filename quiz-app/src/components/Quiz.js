@@ -119,7 +119,7 @@ function Quiz({ quizData }) {
         {selectedOption && (
           <div className={`solution ${showSolution ? 'show' : ''}`}>
             <h4>解析:</h4>
-            <p>{currentQuestion.solution}</p>
+            <div dangerouslySetInnerHTML={{ __html: currentQuestion.solution }}></div>
           </div>
         )}
         
