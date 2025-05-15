@@ -331,4 +331,52 @@ header {
 .solution strong {
   display: inline;
   margin-bottom: 0;
+}
+
+.answer-item {
+  margin-bottom: 1.5rem;
+  padding: 1rem;
+  border-radius: 6px;
+  transition: all 0.3s ease;
+  text-align: left;
+}
+
+.answer-item.correct {
+  background-color: rgba(107, 205, 105, 0.1);
+  border-left: 4px solid var(--correct-color);
+}
+
+.answer-item.incorrect {
+  background-color: rgba(255, 107, 107, 0.1);
+  border-left: 4px solid var(--incorrect-color);
+}
+
+.answer-item .question {
+  cursor: pointer;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 0.5rem;
+}
+
+.answer-item .expand-icon {
+  font-size: 0.8rem;
+  margin-left: 0.5rem;
+  transition: transform 0.3s ease;
+}
+
+.answer-details {
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.3s ease;
+  opacity: 0;
+  margin-top: 0;
+}
+
+.answer-details.expanded {
+  max-height: 1000px;
+  opacity: 1;
+  margin-top: 1rem;
+  padding-top: 1rem;
+  border-top: 1px solid #eee;
 } 

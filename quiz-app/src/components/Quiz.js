@@ -7,7 +7,6 @@ function Quiz({ quizData }) {
   
   const [currentQuestionIndex, setCurrentQuestionIndex] = useState(0);
   const [selectedOption, setSelectedOption] = useState(null);
-  const [showSolution, setShowSolution] = useState(false);
   const [answers, setAnswers] = useState([]);
   const [timeLeft, setTimeLeft] = useState(60); // 每題60秒
   
@@ -33,7 +32,6 @@ function Quiz({ quizData }) {
   // 當切換到新題目時重設狀態
   useEffect(() => {
     setSelectedOption(null);
-    setShowSolution(false);
     setTimeLeft(60);
   }, [currentQuestionIndex]);
   
@@ -53,14 +51,10 @@ function Quiz({ quizData }) {
         question: currentQuestion.question_text,
         userAnswer: optionKey,
         correctAnswer: currentQuestion.correct_answer,
-        isCorrect: optionKey === currentQuestion.correct_answer
+        isCorrect: optionKey === currentQuestion.correct_answer,
+        solution: currentQuestion.solution  // 保存解析以便在結果頁顯示
       }
     ]);
-  };
-  
-  // 顯示解答
-  const handleShowSolution = () => {
-    setShowSolution(true);
   };
   
   // 前進到下一題
@@ -107,11 +101,7 @@ function Quiz({ quizData }) {
           {Object.entries(currentQuestion.options).map(([key, value]) => (
             <div 
               key={key}
-              className={`option ${selectedOption === key ? 'selected' : ''} ${
-                selectedOption && key === currentQuestion.correct_answer ? 'correct' : ''
-              } ${
-                selectedOption === key && key !== currentQuestion.correct_answer ? 'incorrect' : ''
-              }`}
+              className={`option ${selectedOption === key ? 'selected' : ''}`}
               onClick={() => handleOptionSelect(key)}
             >
               <strong>{key}.</strong> {value}
@@ -119,23 +109,7 @@ function Quiz({ quizData }) {
           ))}
         </div>
         
-        {selectedOption && (
-          <div className={`solution ${showSolution ? 'show' : ''}`}>
-            <h4>解析:</h4>
-            <div dangerouslySetInnerHTML={{ __html: currentQuestion.solution }}></div>
-          </div>
-        )}
-        
         <div className="button-group">
-          {selectedOption && !showSolution && (
-            <button 
-              className="button"
-              onClick={handleShowSolution}
-            >
-              查看解析
-            </button>
-          )}
-          
           {selectedOption && (
             <button 
               className="button"

@@ -34,7 +34,7 @@
                                 "question_text": "箱形圖 (Box Plot) 主要用於展示數據的哪些統計特性？",
                                 "options": {
                                     "A": "數據的平均數 (Mean)、眾數 (Mode)和峰態 (Kurtosis)",
-                                    "B": "數據的最小值、第一四分位數(Q1 (First Quartile))、中位數 (Median)、第三四分位數(Q3 (Third Quartile))和最大值",
+                                    "B": "數據的最小值、最大值和四分位數(Quartile)",
                                     "C": "兩個變數之間的線性相關程度",
                                     "D": "數據隨時間變化的趨勢"
                                 },

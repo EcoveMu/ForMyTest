@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { useLocation, Link } from 'react-router-dom';
 
 function Results() {
@@ -13,6 +13,17 @@ function Results() {
     subSectionId = '',
     subSectionTitle = ''
   } = location.state || {};
+  
+  // 用於展開/摺疊答題詳情
+  const [expandedItems, setExpandedItems] = useState({});
+  
+  // 切換問題的展開/摺疊狀態
+  const toggleExpanded = (index) => {
+    setExpandedItems(prev => ({
+      ...prev,
+      [index]: !prev[index]
+    }));
+  };
   
   // 計算測驗統計資料
   const correctAnswersCount = answers.filter(answer => answer.isCorrect).length;
@@ -42,14 +53,20 @@ function Results() {
         <h3 className="mt-4">答題記錄</h3>
         {answers.map((answer, index) => (
           <div key={index} className={`answer-item ${answer.isCorrect ? 'correct' : 'incorrect'}`}>
-            <div className="question">
+            <div className="question" onClick={() => toggleExpanded(index)}>
               <span className="question-number">{index + 1}. </span>
               {answer.question}
+              <span className="expand-icon">{expandedItems[index] ? '▼' : '▶'}</span>
             </div>
-            <div className="answer-details">
+            <div className={`answer-details ${expandedItems[index] ? 'expanded' : ''}`}>
               <div>你的答案: <strong>{answer.userAnswer}</strong></div>
-              {!answer.isCorrect && (
-                <div>正確答案: <strong>{answer.correctAnswer}</strong></div>
+              <div>正確答案: <strong>{answer.correctAnswer}</strong></div>
+              
+              {answer.solution && (
+                <div className="solution">
+                  <h4>解析:</h4>
+                  <div dangerouslySetInnerHTML={{ __html: answer.solution }}></div>
+                </div>
               )}
             </div>
           </div>
