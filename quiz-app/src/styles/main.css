@@ -90,11 +90,17 @@ header {
   padding: 1rem;
   background-color: #f8f9fa;
   border-left: 4px solid var(--primary-color);
-  display: none;
 }
 
 .solution.show {
   display: block;
+}
+
+.answer-details .solution {
+  display: block;
+  margin-top: 1rem;
+  overflow-wrap: break-word;
+  word-break: break-word;
 }
 
 .button {

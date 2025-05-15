@@ -17,8 +17,17 @@ function Quiz({ quizData }) {
   // 處理倒數計時
   useEffect(() => {
     if (timeLeft <= 0) {
-      // 時間到，自動前進到下一題
-      handleNext();
+      // 時間到，如果用戶已選擇答案則自動前進到下一題
+      if (selectedOption) {
+        handleNext();
+      } else {
+        // 若用戶未選擇答案，則選擇一個默認選項
+        const defaultOption = Object.keys(currentQuestion?.options || {})[0];
+        if (defaultOption) {
+          setSelectedOption(defaultOption);
+          setTimeout(() => handleNext(), 500); // 短暫延遲以確保狀態更新
+        }
+      }
       return;
     }
     
@@ -41,31 +50,51 @@ function Quiz({ quizData }) {
   
   // 選擇答案
   const handleOptionSelect = (optionKey) => {
-    if (selectedOption) return; // 已經選過就不能再選
-    
+    // 移除已選擇就不能再選的限制
     setSelectedOption(optionKey);
-    setAnswers(prev => [
-      ...prev, 
-      {
-        questionIndex: currentQuestionIndex,
-        question: currentQuestion.question_text,
-        userAnswer: optionKey,
-        correctAnswer: currentQuestion.correct_answer,
-        isCorrect: optionKey === currentQuestion.correct_answer,
-        solution: currentQuestion.solution  // 保存解析以便在結果頁顯示
-      }
-    ]);
+  };
+  
+  // 獲取當前答案對象
+  const getCurrentAnswer = () => {
+    return {
+      questionIndex: currentQuestionIndex,
+      question: currentQuestion.question_text,
+      userAnswer: selectedOption,
+      correctAnswer: currentQuestion.correct_answer,
+      isCorrect: selectedOption === currentQuestion.correct_answer,
+      solution: currentQuestion.solution  // 保存解析以便在結果頁顯示
+    };
   };
   
   // 前進到下一題
   const handleNext = () => {
+    // 確保用戶選擇了答案
+    if (!selectedOption) return;
+    
+    // 將答案添加到答案陣列中
+    const currentAnswer = getCurrentAnswer();
+    
+    // 檢查是否已經有這題的答案，如果有就替換
+    const answerExists = answers.findIndex(answer => answer.questionIndex === currentQuestionIndex);
+    
+    let updatedAnswers = [...answers];
+    if (answerExists !== -1) {
+      // 替換現有答案
+      updatedAnswers[answerExists] = currentAnswer;
+    } else {
+      // 添加新答案
+      updatedAnswers = [...updatedAnswers, currentAnswer];
+    }
+    
+    setAnswers(updatedAnswers);
+    
     if (currentQuestionIndex < questions.length - 1) {
       setCurrentQuestionIndex(prev => prev + 1);
     } else {
       // 如果是最後一題，導向結果頁面
       navigate('/results', { 
         state: { 
-          answers, 
+          answers: updatedAnswers,
           totalQuestions: questions.length,
           categoryId: categoryId,
           categoryTitle: quizData[categoryId]?.title,

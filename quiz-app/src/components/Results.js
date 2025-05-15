@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useLocation, Link } from 'react-router-dom';
 
 function Results() {
@@ -16,6 +16,12 @@ function Results() {
   
   // 用於展開/摺疊答題詳情
   const [expandedItems, setExpandedItems] = useState({});
+  
+  // 在組件載入時檢查和處理答案數據
+  useEffect(() => {
+    console.log('結果頁面收到的答案:', answers);
+    console.log('總題數:', totalQuestions);
+  }, [answers, totalQuestions]);
   
   // 切換問題的展開/摺疊狀態
   const toggleExpanded = (index) => {
@@ -38,6 +44,9 @@ function Results() {
     return '繼續努力！建議重新學習本主題。';
   };
   
+  // 確保答案按照題目順序排序
+  const sortedAnswers = [...answers].sort((a, b) => a.questionIndex - b.questionIndex);
+  
   return (
     <div className="results">
       <h2>測驗結果</h2>
@@ -51,10 +60,10 @@ function Results() {
         <p className="feedback">{getFeedback()}</p>
         
         <h3 className="mt-4">答題記錄</h3>
-        {answers.map((answer, index) => (
+        {sortedAnswers.map((answer, index) => (
           <div key={index} className={`answer-item ${answer.isCorrect ? 'correct' : 'incorrect'}`}>
             <div className="question" onClick={() => toggleExpanded(index)}>
-              <span className="question-number">{index + 1}. </span>
+              <span className="question-number">{answer.questionIndex + 1}. </span>
               {answer.question}
               <span className="expand-icon">{expandedItems[index] ? '▼' : '▶'}</span>
             </div>
@@ -63,7 +72,7 @@ function Results() {
               <div>正確答案: <strong>{answer.correctAnswer}</strong></div>
               
               {answer.solution && (
-                <div className="solution">
+                <div className="solution show">
                   <h4>解析:</h4>
                   <div dangerouslySetInnerHTML={{ __html: answer.solution }}></div>
                 </div>
