@@ -12,14 +12,14 @@ function QuizCategory({ quizData }) {
 
   return (
     <div>
-      <h2>{category.title}</h2>
+      <h2>{categoryId}: {category.title}</h2>
       
       {Object.keys(category.sections).map(sectionId => {
         const section = category.sections[sectionId];
         
         return (
           <div key={sectionId} className="quiz-card">
-            <h3>{section.title}</h3>
+            <h3>{sectionId}: {section.title}</h3>
             
             <div className="category-list">
               {Object.keys(section.sub_sections).map(subSectionId => {
@@ -33,7 +33,7 @@ function QuizCategory({ quizData }) {
                     style={{ textDecoration: 'none', color: 'inherit' }}
                   >
                     <div className="category-card">
-                      <h4>{subSection.title}</h4>
+                      <h4>{subSectionId}: {subSection.title}</h4>
                       <p>共 {questionCount} 題</p>
                     </div>
                   </Link>

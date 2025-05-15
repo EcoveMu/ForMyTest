@@ -6,8 +6,11 @@ function Results() {
   const { 
     answers = [], 
     totalQuestions = 0,
+    categoryId = '',
     categoryTitle = '',
+    sectionId = '',
     sectionTitle = '',
+    subSectionId = '',
     subSectionTitle = ''
   } = location.state || {};
   
@@ -29,8 +32,8 @@ function Results() {
       <h2>測驗結果</h2>
       
       <div className="quiz-card">
-        <h3>{categoryTitle}</h3>
-        <h4>{sectionTitle} - {subSectionTitle}</h4>
+        <h3>{categoryId ? `${categoryId}: ` : ''}{categoryTitle}</h3>
+        <h4>{sectionId ? `${sectionId}: ` : ''}{sectionTitle} - {subSectionId ? `${subSectionId}: ` : ''}{subSectionTitle}</h4>
         
         <div className="score">{score}分</div>
         <p>共{totalQuestions}題，答對{correctAnswersCount}題</p>

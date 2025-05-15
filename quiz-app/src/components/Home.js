@@ -17,7 +17,7 @@ function Home({ quizData }) {
             style={{ textDecoration: 'none', color: 'inherit' }}
           >
             <div className="category-card">
-              <h3>{quizData[categoryId]?.title || '無標題'}</h3>
+              <h3>{categoryId}: {quizData[categoryId]?.title || '無標題'}</h3>
               <p>
                 共 {
                   Object.keys(quizData[categoryId]?.sections || {}).reduce((total, sectionId) => {

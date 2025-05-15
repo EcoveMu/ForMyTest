@@ -73,8 +73,11 @@ function Quiz({ quizData }) {
         state: { 
           answers, 
           totalQuestions: questions.length,
+          categoryId: categoryId,
           categoryTitle: quizData[categoryId]?.title,
+          sectionId: sectionId,
           sectionTitle: quizData[categoryId]?.sections[sectionId]?.title,
+          subSectionId: subSectionId,
           subSectionTitle: quizData[categoryId]?.sections[sectionId]?.sub_sections[subSectionId]?.title
         } 
       });
