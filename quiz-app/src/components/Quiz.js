@@ -8,40 +8,14 @@ function Quiz({ quizData }) {
   const [currentQuestionIndex, setCurrentQuestionIndex] = useState(0);
   const [selectedOption, setSelectedOption] = useState(null);
   const [answers, setAnswers] = useState([]);
-  const [timeLeft, setTimeLeft] = useState(60); // 每題60秒
   
   // 取得目前要顯示的問題資料
   const questions = quizData[categoryId]?.sections[sectionId]?.sub_sections[subSectionId]?.questions || [];
   const currentQuestion = questions[currentQuestionIndex];
   
-  // 處理倒數計時
-  useEffect(() => {
-    if (timeLeft <= 0) {
-      // 時間到，如果用戶已選擇答案則自動前進到下一題
-      if (selectedOption) {
-        handleNext();
-      } else {
-        // 若用戶未選擇答案，則選擇一個默認選項
-        const defaultOption = Object.keys(currentQuestion?.options || {})[0];
-        if (defaultOption) {
-          setSelectedOption(defaultOption);
-          setTimeout(() => handleNext(), 500); // 短暫延遲以確保狀態更新
-        }
-      }
-      return;
-    }
-    
-    const timer = setTimeout(() => {
-      setTimeLeft(prev => prev - 1);
-    }, 1000);
-    
-    return () => clearTimeout(timer);
-  }, [timeLeft]);
-  
   // 當切換到新題目時重設狀態
   useEffect(() => {
     setSelectedOption(null);
-    setTimeLeft(60);
   }, [currentQuestionIndex]);
   
   if (!currentQuestion) {
@@ -121,7 +95,6 @@ function Quiz({ quizData }) {
       <div className="quiz-card">
         <div className="quiz-header">
           <span>問題 {currentQuestionIndex + 1} / {questions.length}</span>
-          <span className="timer">剩餘時間: {timeLeft} 秒</span>
         </div>
         
         <div className="question">{currentQuestion.question_text}</div>
