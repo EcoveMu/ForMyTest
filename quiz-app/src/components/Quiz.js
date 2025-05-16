@@ -36,7 +36,8 @@ function Quiz({ quizData }) {
       userAnswer: selectedOption,
       correctAnswer: currentQuestion.correct_answer,
       isCorrect: selectedOption === currentQuestion.correct_answer,
-      solution: currentQuestion.solution  // 保存解析以便在結果頁顯示
+      solution: currentQuestion.solution,  // 保存解析以便在結果頁顯示
+      options: currentQuestion.options // 新增選項內容
     };
   };
   

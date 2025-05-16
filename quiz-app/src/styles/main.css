@@ -101,6 +101,8 @@ header {
   margin-top: 1rem;
   overflow-wrap: break-word;
   word-break: break-word;
+  white-space: normal;
+  overflow: visible;
 }
 
 .button {
@@ -306,6 +308,19 @@ header {
   .button-group {
     flex-direction: column;
   }
+  
+  .solution, .answer-details .solution {
+    padding: 0.8rem;
+    font-size: 0.95rem;
+  }
+  
+  .quiz-card {
+    padding: 1.5rem;
+  }
+  
+  .answer-item {
+    padding: 0.8rem;
+  }
 }
 
 /* 解析內容的結構化樣式 */
@@ -380,9 +395,34 @@ header {
 }
 
 .answer-details.expanded {
-  max-height: 1000px;
+  display: block;
+  max-height: 2000px;
   opacity: 1;
-  margin-top: 1rem;
-  padding-top: 1rem;
+  visibility: visible;
+  padding: 1rem 0;
+}
+
+/* 結果頁面選項列表樣式 */
+.options-list {
+  margin: 1rem 0;
   border-top: 1px solid #eee;
+  padding-top: 1rem;
+}
+
+.option-item {
+  padding: 0.7rem;
+  margin-bottom: 0.5rem;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  background-color: #f9f9f9;
+}
+
+.option-item.correct-option {
+  border-color: var(--correct-color);
+  background-color: rgba(107, 205, 105, 0.1);
+}
+
+.option-item.wrong-option {
+  border-color: var(--incorrect-color);
+  background-color: rgba(255, 107, 107, 0.1);
 } 

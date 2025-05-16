@@ -71,10 +71,21 @@ function Results() {
               <div>你的答案: <strong>{answer.userAnswer}</strong></div>
               <div>正確答案: <strong>{answer.correctAnswer}</strong></div>
               
+              {answer.options && (
+                <div className="options-list">
+                  <h4>選項內容:</h4>
+                  {Object.entries(answer.options).map(([key, value]) => (
+                    <div key={key} className={`option-item ${key === answer.correctAnswer ? 'correct-option' : ''} ${key === answer.userAnswer && key !== answer.correctAnswer ? 'wrong-option' : ''}`}>
+                      <strong>{key}.</strong> {value}
+                    </div>
+                  ))}
+                </div>
+              )}
+              
               {answer.solution && (
                 <div className="solution show">
                   <h4>解析:</h4>
-                  <div dangerouslySetInnerHTML={{ __html: answer.solution }}></div>
+                  <div className="solution-content" dangerouslySetInnerHTML={{ __html: answer.solution }}></div>
                 </div>
               )}
             </div>
