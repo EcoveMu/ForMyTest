@@ -548,7 +548,7 @@
                                     "A": "監督式學習 (Supervised Learning)，如分類 (Classification)與迴歸 (Regression)",
                                     "B": "非監督式學習 (Unsupervised Learning) ，如分群 (Clustering)與降維 (Dimensionality Reduction)",
                                     "C": "強化學習 (Reinforcement Learning) ，用於決策與控制",
-                                    "D": "數據預處理與特徵工程 (Data Preprocessing & Feature Engineering)"
+                                    "D": "數據預處理與特徵工程 (Data Preprocessing & Feature Engineering)，如缺失值補齊、資料正規化、特徵選擇與轉換等"
                                 },
                                 "correct_answer": "D",
                                 "solution": "<div><p><strong>(D) </strong>數據預處理與特徵工程雖然是機器學習流程中的重要步驟，但它們本身不是機器學習的應用類型，而是為機器學習算法準備數據的過程。數據預處理包括數據清洗、標準化、正規化等操作，特徵工程則專注於從原始數據中提取或創造有用的特徵。這些流程是機器學習項目不可或缺的環節，但與監督式學習、非監督式學習和強化學習這些主要學習範式不同，它們不直接涉及模型如何學習和做出預測的機制。在大數據環境中，預處理和特徵工程的自動化和優化本身也是重要的研究領域，但它們支持機器學習應用而非機器學習的應用類型本身。</p><p><strong>(A)</strong> 錯誤。監督式學習是機器學習的一個主要分支，它使用標註好的訓練數據（包含輸入特徵和目標輸出）來學習輸入和輸出之間的映射關係。在大數據分析中，監督式學習被廣泛應用於分類問題（如垃圾郵件檢測、客戶分類）和迴歸問題（如銷售預測、價格估算）。</p><p><strong>(B)</strong> 錯誤。非監督式學習在沒有標註數據的情況下探索數據的結構和模式。在大數據分析中，它常用於分群（如客戶分群、異常檢測）和降維（如主成分分析PCA、t-SNE）等任務，幫助理解複雜數據集的內在結構。</p><p><strong>(C)</strong> 錯誤。強化學習是機器學習的一個分支，智能體通過與環境互動學習做出最優決策。在大數據環境中，強化學習用於優化決策過程，如推薦系統的策略優化、自動化交易、遊戲AI和自動駕駛等領域。</p></div>"
@@ -575,7 +575,7 @@
                                     "A": "NumPy",
                                     "B": "Pandas",
                                     "C": "Scikit-learn",
-                                    "D": "Matplotlib 或 Seaborn (ggplot2 for R)"
+                                    "D": "Matplotlib Seaborn"
                                 },
                                 "correct_answer": "D",
                                 "solution": "<div><p><strong>(D) 正確。</strong>Matplotlib是Python中最基礎且使用最廣泛的數據可視化函式庫，提供了廣泛的圖表類型和詳細的自定義選項。Seaborn是基於Matplotlib的高級可視化函式庫，專門用於統計可視化，提供了更美觀的預設樣式和更簡潔的API。另外，Python中的plotly和altair等函式庫，以及R語言中的ggplot2，都是基於「Grammar of Graphics」的理念設計的，這種理念將數據可視化視為一種語法，通過組合不同的圖形元素（如座標系、幾何形狀、美學屬性等）來構建複雜的圖表。這些工具使得創建複雜、專業的可視化變得更加系統和直觀。</p><p><strong>(A)</strong> 錯誤。NumPy是Python的基礎數值計算函式庫，提供高效的多維數組和各種數學函數，但它不是數據可視化工具。</p><p><strong>(B)</strong> 錯誤。Pandas是Python中用於數據操作和分析的函式庫，專注於提供數據結構（如DataFrame）和數據處理功能。雖然Pandas有一些基本的繪圖功能（通過調用Matplotlib），但它不是專門的可視化工具。</p><p><strong>(C)</strong> 錯誤。Scikit-learn是Python中最流行的機器學習函式庫，提供各種機器學習算法和工具，但不是專門的數據可視化工具。</p></div>"
@@ -584,8 +584,8 @@
                                 "question_text": "Tableau 和 Microsoft Power BI 屬於下列哪一類數據分析與可視化工具？",
                                 "options": {
                                     "A": "程式語言內建函式庫",
-                                    "B": "商業智能 (BI) 工具，提供互動式儀表板和報表功能",
-                                    "C": "分散式運算框架",
+                                    "B": "互動式儀表板和報表功能",
+                                    "C": "分散式運算框架功能",
                                     "D": "數據庫管理系統"
                                 },
                                 "correct_answer": "B",
